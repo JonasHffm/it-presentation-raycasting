@@ -11,8 +11,8 @@ let xoff = 0;
 let yoff = 10000;
 
 function setup() {
-  createCanvas(400, 400);
-  for (let i = 0; i < 5; i++) {
+  createCanvas(700, 700);
+  for (let i = 0; i < 7; i++) {
     let x1 = random(width);
     let x2 = random(width);
     let y1 = random(height);
@@ -31,8 +31,8 @@ function draw() {
   for (let wall of walls) {
     wall.show();
   }
-  //particle.update(noise(xoff) * width, noise(yoff) * height);
-  particle.update(mouseX, mouseY);
+  particle.update(noise(xoff) * width, noise(yoff) * height);
+  //particle.update(mouseX, mouseY);
   particle.show();
   particle.look(walls);
 
