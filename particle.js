@@ -8,7 +8,7 @@ class Particle {
   constructor() {
     this.pos = createVector(width / 2, height / 2);
     this.rays = [];
-    for (let a = 0; a < 360; a += 1) {
+    for (let a = 1; a <= 360; a += 3) {
       this.rays.push(new Ray(this.pos, radians(a)));
     }
   }
@@ -33,8 +33,8 @@ class Particle {
         }
       }
       if (closest) {
-        // colorMode(HSB);
-        // stroke((i + frameCount * 2) % 360, 255, 255, 50);
+        //colorMode(HSB);
+        //stroke((i + frameCount * 2) % 360, 255, 255, 1);
         stroke(255, 100);
         line(this.pos.x, this.pos.y, closest.x, closest.y);
       }

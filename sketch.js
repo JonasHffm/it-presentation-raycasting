@@ -7,11 +7,13 @@
 let walls = [];
 let ray;
 let particle;
+let particleTemp;
+let particleList = [];
 let xoff = 0;
 let yoff = 10000;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(1600, 1100);
   for (let i = 0; i < 5; i++) {
     let x1 = random(width);
     let x2 = random(width);
@@ -35,6 +37,16 @@ function draw() {
   particle.update(mouseX, mouseY);
   particle.show();
   particle.look(walls);
+
+  particleList.forEach(function(element) {
+    element.show();
+    element.look(walls);
+  });
+
+  this.onclick = function () {
+    particleList.push(new Particle());
+    particleList[particleList.length -1].update(mouseX, mouseY);
+  };
 
   xoff += 0.01;
   yoff += 0.01;
