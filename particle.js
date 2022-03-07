@@ -35,7 +35,19 @@ class Particle {
       if (closest) {
         //colorMode(HSB);
         //stroke((i + frameCount * 2) % 360, 255, 255, 1);
-        stroke(255, 100);
+
+        if(document.querySelector('.checkedcolormode').checked) {
+          let dis = p5.Vector.dist(this.pos, closest);
+          colorMode("RGB");
+          //console.log(dis/document.getElementById('myRange').value);
+          let percentage = (dis/document.getElementById('myRange').value)*100;
+          if(percentage > 100) {
+            percentage = 100;
+          }
+          stroke(getGreenToRed(percentage));
+        }else {
+          stroke(255, 100);
+        }
         line(this.pos.x, this.pos.y, closest.x, closest.y);
       }
     }
@@ -48,4 +60,10 @@ class Particle {
       ray.show();
     }
   }
+}
+
+function getGreenToRed(percent){
+  g = percent<50 ? 255 : Math.floor(255-(percent*2-100)*255/100);
+  r = percent>50 ? 255 : Math.floor((percent*2)*255/100);
+  return 'rgb('+r+','+g+',0)';
 }
